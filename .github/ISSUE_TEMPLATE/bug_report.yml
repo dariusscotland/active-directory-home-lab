@@ -1,0 +1,25 @@
+name: Lab issue or error
+description: Record a problem encountered while building or testing the lab.
+title: "[Lab issue]: "
+labels: ["lab", "troubleshooting"]
+body:
+  - type: textarea
+    id: symptom
+    attributes:
+      label: Symptom
+      description: What happened? Include the exact error, with sensitive details removed.
+      placeholder: "The client could not resolve the lab domain..."
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true
+  - type: textarea
+    id: troubleshooting
+    attributes:
+      label: Checks already performed
+    validations:
+      required: false

@@ -1,0 +1,30 @@
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+*.pfx
+*.p12
+*.key
+secrets/
+credentials/
+
+# VM disks, exports, and snapshots (do not commit these)
+*.vdi
+*.vhd
+*.vhdx
+*.vmdk
+*.ova
+*.ovf
+*.iso
+Snapshots/
+
+# Local logs and temporary output
+*.log
+*.tmp
+*.bak
+Thumbs.db
+.DS_Store
+
+# Editor / OS files
+.vscode/
+.idea/
