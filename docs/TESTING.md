@@ -43,3 +43,21 @@ Ping alone does not prove that Active Directory is healthy. Use DNS and domain-s
 - [ ] A short test-results table with pass/fail and notes.
 
 Do not write “passed” until you have run the test yourself.
+
+## Active Directory Domain Controller Verification
+
+Date: October 29, 2026
+
+| Test | Command | Expected Result | Status |
+|---|---|---|---|
+| User identity | whoami | MYDOMAIN\Administrator | PASS |
+| Computer name | hostname | DC | PASS |
+| Domain verification | Get-ADDomain | mydomain.com | PASS |
+| Forest verification | Get-ADForest | mydomain.com | PASS |
+
+### Result
+
+All four verification tests completed successfully.
+
+The server successfully operates as a Domain Controller for the
+mydomain.com Active Directory forest.

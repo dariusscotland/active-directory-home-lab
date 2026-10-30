@@ -83,3 +83,79 @@ The video configures Remote Access/NAT and DHCP so the client on the private net
 - Add screenshots you personally captured and redact host usernames, public IPs, email addresses, license keys, and other private details.
 - Never commit VM disks, ISOs, passwords, or exported credentials.
 - Document any differences from the tutorial, especially OS versions and network design.
+
+## Domain Controller Virtual Machine
+
+| Configuration | Value |
+|---|---|
+| VM Name | DC |
+| Operating System | Windows Server 2019 Evaluation |
+| Memory | 2 GB |
+| Virtual Processors | 4 |
+| Virtual Disk | 40 GB |
+| Disk Allocation | Dynamically allocated |
+
+The Domain Controller VM will host Active Directory Domain Services and DNS.
+
+### Windows Server Installation
+
+- Operating System: Windows Server 2019 Standard Evaluation
+- Installation Mode: Desktop Experience
+- Installation Type: Custom
+- Installation Status: Completed
+- Initial Administrator Login: Successful
+
+### VirtualBox Guest Additions
+
+Status: Installed
+
+Purpose:
+- Improved mouse integration
+- Automatic display resizing
+- Shared clipboard functionality
+
+### Domain Controller Network Configuration
+
+| Adapter | Configuration | IP Address |
+|---|---|---|
+| INTERNET | NAT | 10.0.2.15 |
+| INTERNAL | Internal Network | 172.16.0.1 |
+
+Internal Network settings:
+- Subnet Mask: 255.255.255.0
+- Default Gateway: None
+- Preferred DNS: 127.0.0.1
+
+### Domain Controller Hostname
+
+- New hostname: DC
+- Computer restart: Completed
+- Hostname verification: Successful
+
+## Active Directory Domain Services Installation
+
+- Server: DC
+- Role: Active Directory Domain Services (AD DS)
+- Installation Status: Successful
+- Promotion to Domain Controller: Pending
+
+## Domain Controller Promotion
+
+### Active Directory Forest
+
+| Configuration | Value |
+|---|---|
+| Domain Controller | DC |
+| Forest Root Domain | mydomain.com |
+| NetBIOS Domain | MYDOMAIN |
+| Forest Functional Level | Windows Server 2016 |
+| Domain Functional Level | Windows Server 2016 |
+| DNS Server | Enabled |
+| Global Catalog | Enabled |
+
+### Promotion Status
+
+- AD DS Role Installation: Successful
+- New Forest Creation: Successful
+- Domain Controller Promotion: Successful
+- Domain Administrator Login: Successful
