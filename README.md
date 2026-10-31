@@ -154,7 +154,7 @@ Used the tutorial's `1_CREATE_USERS.ps1` script with `names.txt` to create synth
 - 1,000 user accounts were created.
 - Duplicate generated usernames, including `smolder` and `trollins`, were investigated.
 
-The bulk user-creation tutorial files are separate from the optional supplementary scripts included in this repository.
+The tutorial's PowerShell files were downloaded separately and used locally. The original script and modified `names.txt` file are not included in this repository. See the [PowerShell Script Documentation](scripts/README.md) for the source and implementation details.
 
 ### 6. Windows Client Deployment
 
@@ -210,9 +210,7 @@ active-directory-home-lab/
 │   ├── TESTING.md
 │   └── TROUBLESHOOTING.md
 │
-├── scripts/
-│   ├── New-LabUsers.ps1
-│   ├── Test-LabDomain.ps1
+├── ├── scripts/
 │   └── README.md
 │
 ├── screenshots/
@@ -240,7 +238,7 @@ active-directory-home-lab/
 | [Network Plan](configs/network-plan.md) | Documents the implemented IP addressing, adapters, DHCP, and routing. |
 | [Example Network Plan](configs/network-plan.example.md) | Provides the original network configuration template. |
 | [Screenshots](screenshots/README.md) | Indexes the implementation and testing evidence. |
-| [PowerShell Scripts](scripts/README.md) | Explains the optional scripts and the tutorial script used for bulk user creation. |
+| | [PowerShell Script](scripts/README.md) | Documents the tutorial script used for bulk user creation and its implementation. |
 
 ## Skills Practiced
 

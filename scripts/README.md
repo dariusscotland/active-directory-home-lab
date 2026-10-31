@@ -1,79 +1,65 @@
-# PowerShell Scripts
 
-This directory contains supplementary PowerShell scripts for managing and testing the Active Directory home lab.
+# PowerShell Script Used
 
-The scripts are intended for an isolated, disposable learning environment. Review each script before running it.
+This directory documents the PowerShell script used during the Active Directory home lab implementation.
 
-## Repository Scripts
+The script was obtained from Josh Madakor's Active Directory PowerShell repository and was used to create synthetic employee accounts in the lab domain.
 
-### 1. New-LabUsers.ps1
+## Script Reference
 
-**Purpose:** Creates synthetic Active Directory user accounts.
+**Script:** `1_CREATE_USERS.ps1`
 
-This is an optional helper script included in this repository. It supports creating a specified number of lab users in a selected organizational unit and prompts for a password.
+**Original author:** Josh Madakor
 
-**Features:**
-- Creates synthetic user accounts.
-- Allows the target organizational unit to be selected.
-- Prompts for a password rather than storing one in the script.
-- Supports PowerShell's `-WhatIf` and `-Confirm` options through `ShouldProcess`.
+**Source repository:** [AD_PS](https://github.com/joshmadakor1/AD_PS)
 
-**Current status:** Included as an optional example. It was not used to create the 1,000 accounts in the completed lab.
+**Tutorial:** [How to Setup a Basic Home Lab Running Active Directory](https://www.youtube.com/watch?v=MHsI8hJmggI)
 
-### 2. Test-LabDomain.ps1
+The original script is maintained in the author's repository and is not included in this project.
 
-**Purpose:** Provides basic checks for the Active Directory lab environment.
+## Input File
 
-This is an optional helper script intended to assist with checking domain and DNS configuration.
+The script uses a text file named `names.txt` containing first and last names.
 
-**Current status:** Included as a supplementary example. It has not been run as part of the lab validation documented in this repository.
+The file was downloaded with the tutorial resources and modified locally to include an additional name. It is not included in this repository.
 
-## Bulk User Creation Used in This Lab
+## Implementation Process
 
-The bulk user creation process followed the PowerShell script provided with the Active Directory home lab tutorial.
+The following process was completed during the lab:
 
-**Script used:** `1_CREATE_USERS.ps1`
+1. Downloaded the tutorial's PowerShell files.
+2. Extracted the downloaded archive.
+3. Modified `names.txt` to include an additional name.
+4. Opened PowerShell ISE as Administrator.
+5. Set the execution policy for the current PowerShell process:
 
-**Input file:** `names.txt`
+   ```powershell
+   Set-ExecutionPolicy Unrestricted -Scope Process
+   ```
 
-The tutorial files were downloaded separately and used locally. They are not included in this repository's `scripts` directory.
+6. Set the working directory to the extracted tutorial folder.
+7. Executed `1_CREATE_USERS.ps1`.
+8. Verified the created accounts in Active Directory Users and Computers.
 
-**Process followed:**
-1. Download the tutorial's PowerShell files.
-2. Edit `names.txt` to provide the source names.
-3. Open PowerShell ISE as Administrator.
-4. Set the execution policy for the current PowerShell process.
-5. Run `1_CREATE_USERS.ps1`.
-6. Verify the generated accounts in Active Directory Users and Computers.
+## Observed Results
 
-**Observed result:**
-- The source file contained 1,002 lines.
-- The script created 1,000 user accounts.
-- Investigation identified duplicate generated usernames, including `smolder` and `trollins`.
+- Source file contained 1,002 entries.
+- 1,000 Active Directory user accounts were created.
+- Two duplicate generated usernames were identified:
+  - `smolder`
+  - `trollins`
 
-The duplicate-name investigation and account-count verification are documented in `../docs/TROUBLESHOOTING.md` and `../docs/TESTING.md`.
+The resulting accounts were created in the `_USERS` organizational unit.
 
-## Execution and Security Considerations
+Further account-count verification and the duplicate username investigation are documented in:
 
-Before running any PowerShell script:
+- [Testing Guide](../docs/TESTING.md)
+- [Troubleshooting Guide](../docs/TROUBLESHOOTING.md)
 
-- Read and understand what the script does.
-- Use an isolated lab environment.
-- Run with only the privileges required.
-- Do not run these scripts against an employer's or another real production domain.
-- Do not store real passwords or personal information in scripts.
-- Do not reuse lab credentials outside the virtual environment.
-- Verify the results after executing a script.
+## Security Considerations
 
-The bulk user-creation tutorial used a common lab password. That password is for isolated practice only and should never be used for real accounts.
+The tutorial script uses a shared initial lab password for the generated accounts.
 
-## Lab Scope
+This was used only within the isolated, disposable virtual lab. Never reuse lab credentials outside that environment or run the tutorial script against a production domain.
 
-These scripts support learning and experimentation with:
-
-- Active Directory user management.
-- PowerShell automation.
-- Domain and DNS checks.
-- Basic administrative tasks.
-
-They are supplementary tools and are not required for the core lab configuration.
+Review external scripts before executing them and understand the changes they make to Active Directory.
