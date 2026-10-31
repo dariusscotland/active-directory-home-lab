@@ -7,6 +7,7 @@ This directory contains documentation of the network configuration used in the A
 | File | Description |
 |---|---|
 | `network-plan.md` | Documents the implemented lab network, including IP addressing, VirtualBox network adapters, DHCP settings, and routing configuration. |
+| `network-plan.example.md` | Template for documenting the lab network configuration. |
 
 ## Network Overview
 
