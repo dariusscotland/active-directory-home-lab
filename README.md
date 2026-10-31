@@ -210,7 +210,7 @@ active-directory-home-lab/
 │   ├── TESTING.md
 │   └── TROUBLESHOOTING.md
 │
-├── ├── scripts/
+├── scripts/
 │   └── README.md
 │
 ├── screenshots/
@@ -238,7 +238,7 @@ active-directory-home-lab/
 | [Network Plan](configs/network-plan.md) | Documents the implemented IP addressing, adapters, DHCP, and routing. |
 | [Example Network Plan](configs/network-plan.example.md) | Provides the original network configuration template. |
 | [Screenshots](screenshots/README.md) | Indexes the implementation and testing evidence. |
-| | [PowerShell Script](scripts/README.md) | Documents the tutorial script used for bulk user creation and its implementation. |
+| [PowerShell Script](scripts/README.md) | Documents the tutorial script used for bulk user creation and its implementation. |
 
 ## Skills Practiced
 
