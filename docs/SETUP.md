@@ -278,3 +278,36 @@ to generate employee accounts in Active Directory.
 - Two generated usernames appeared twice: smolder and trollins.
 - Duplicate usernames could not create separate Active Directory accounts.
 - A total of 1,000 accounts were verified in the _USERS OU.
+
+## Windows 10 Client Configuration
+
+A Windows 10 Pro virtual machine was created in Oracle VirtualBox and joined to the Active Directory domain.
+
+| Setting | Configuration |
+|---|---|
+| Virtual Machine Name | CLIENT1 |
+| Operating System | Windows 10 Pro |
+| RAM | 4 GB |
+| Processors | 2 |
+| Virtual Disk | 50 GB |
+| Network Adapter | Internal Network |
+| Internal Network Name | intnet |
+| IP Configuration | DHCP |
+| Subnet | 172.16.0.0/24 |
+| Default Gateway | 172.16.0.1 |
+| DNS Server | 172.16.0.1 |
+| Computer Name | CLIENT1 |
+| Active Directory Domain | mydomain.com |
+
+### Domain Join
+
+CLIENT1 was successfully joined to the mydomain.com Active Directory domain using an authorized domain account.
+
+The machine was restarted after the domain join and successfully accessed using domain credentials.
+
+### Connectivity Verification
+
+- CLIENT1 successfully received its network configuration through DHCP.
+- Internet connectivity was verified using ping google.com.
+- Domain name resolution and connectivity were verified using ping mydomain.com.
+- CLIENT1 successfully authenticated using a domain account.

@@ -88,3 +88,62 @@ Get-DhcpServerInDC
 ```powershell
 Get-ADUser -SearchBase "OU=_USERS,DC=mydomain,DC=com" -Filter * |
 Measure-Object
+
+## Windows 10 Client Verification
+
+### 1. Verify IP Configuration
+
+```cmd
+ipconfig
+```
+
+**Expected result:**
+- IPv4 address within the DHCP scope.
+- Subnet mask: 255.255.255.0.
+- Default gateway: 172.16.0.1.
+
+**Status:** PASSED
+
+### 2. Verify Internet Connectivity
+
+```cmd
+ping google.com
+```
+
+**Expected result:** Successful ping replies.
+
+**Status:** PASSED
+
+### 3. Verify Domain Connectivity
+
+```cmd
+ping mydomain.com
+```
+
+**Expected result:** Successful name resolution and ping replies.
+
+**Status:** PASSED
+
+### 4. Verify Domain Authentication
+
+```cmd
+whoami
+```
+
+**Expected result:** The logged-in account is displayed using the MYDOMAIN domain prefix.
+
+**Status:** PASSED
+
+### 5. Verify Domain Membership
+
+```cmd
+systeminfo | findstr /B /C:"Domain"
+```
+
+**Expected result:**
+
+```text
+Domain: mydomain.com
+```
+
+**Status:** PASSED
