@@ -61,3 +61,13 @@ All four verification tests completed successfully.
 
 The server successfully operates as a Domain Controller for the
 mydomain.com Active Directory forest.
+
+## Dedicated Domain Administrator Login Test
+
+| Test | Expected Result | Status |
+|---|---|---|
+| Domain login | Successful | PASS |
+| whoami | MYDOMAIN\a-dscotland | PASS |
+| Domain Admins membership | Present | PASS |
+
+Result: Dedicated domain administrator successfully authenticated.

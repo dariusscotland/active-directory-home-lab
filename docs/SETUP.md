@@ -159,3 +159,21 @@ Internal Network settings:
 - New Forest Creation: Successful
 - Domain Controller Promotion: Successful
 - Domain Administrator Login: Successful
+
+### Active Directory Organizational Units
+
+| OU Name | Purpose |
+|---|---|
+| _ADMINS | Stores dedicated administrative accounts |
+
+### Dedicated Domain Administrator Account
+
+| Configuration | Value |
+|---|---|
+| Account | Dedicated domain administrator |
+| Logon Name | a-dscotland |
+| Organizational Unit | _ADMINS |
+| Security Group | Domain Admins |
+| Account Creation | Successful |
+| Group Membership | Verified |
+| Domain Login | Successful |
