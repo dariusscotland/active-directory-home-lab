@@ -201,7 +201,6 @@ active-directory-home-lab/
 ├── configs/
 │   ├── README.md
 │   ├── network-plan.md
-│   └── network-plan.example.md
 │
 ├── docs/
 │   ├── DECISIONS.md
@@ -236,7 +235,6 @@ active-directory-home-lab/
 | [Design Decisions](docs/DECISIONS.md) | Explains the choices made during lab implementation. |
 | [Technical Walkthrough](docs/LAB-WALKTHROUGH.md) | Explains the architecture, technologies, implementation, and learning outcomes. |
 | [Network Plan](configs/network-plan.md) | Documents the implemented IP addressing, adapters, DHCP, and routing. |
-| [Example Network Plan](configs/network-plan.example.md) | Provides the original network configuration template. |
 | [Screenshots](screenshots/README.md) | Indexes the implementation and testing evidence. |
 | [PowerShell Script](scripts/README.md) | Documents the tutorial script used for bulk user creation and its implementation. |
 

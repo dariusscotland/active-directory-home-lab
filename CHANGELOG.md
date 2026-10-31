@@ -52,11 +52,11 @@ All notable changes to this Active Directory home lab project are documented her
 ### Documentation
 
 - Expanded the Active Directory lab setup guide.
+- Documented the lab testing and verification procedures.
 - Documented the tutorial PowerShell script used for bulk user creation.
 - Added troubleshooting notes based on issues encountered during implementation.
 - Documented network addressing and configuration.
 - Updated lab design decisions and implementation details.
-- Documented supplementary PowerShell scripts.
 - Organized screenshot evidence by implementation stage.
 
 ## Project Status
