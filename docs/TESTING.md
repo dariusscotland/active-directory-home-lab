@@ -80,6 +80,11 @@ The following PowerShell commands were used to verify the DHCP configuration.
 
 ```powershell
 Get-DhcpServerInDC
+```
+
+**Expected result:** The domain controller appears as an authorized DHCP server.
+
+**Status:** PASSED
 
 ## Bulk Active Directory User Verification
 
@@ -88,3 +93,35 @@ Get-DhcpServerInDC
 ```powershell
 Get-ADUser -SearchBase "OU=_USERS,DC=mydomain,DC=com" -Filter * |
 Measure-Object
+```
+
+**Expected result:** 1,000 accounts.
+
+**Actual result:** 1,000 accounts.
+
+**Status:** PASSED
+
+### 2. Verify Sample Accounts
+
+```powershell
+Get-ADUser -SearchBase "OU=_USERS,DC=mydomain,DC=com" -Filter * |
+Select-Object Name, SamAccountName, Enabled |
+Select-Object -First 10
+```
+
+**Expected result:** Sample accounts display Enabled = True.
+
+**Actual result:** Sample accounts displayed Enabled = True.
+
+**Status:** PASSED
+
+### 3. Investigate Duplicate Usernames
+
+The names.txt file contained 1,002 entries.
+
+A duplicate username check identified two usernames appearing twice:
+
+- smolder
+- trollins
+
+The duplicate usernames account for the difference between the number of input entries and the number of unique accounts created.
