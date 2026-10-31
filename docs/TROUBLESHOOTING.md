@@ -236,26 +236,25 @@ During DHCP Server role installation, the screenshot showing the initial Server 
 
 ### Investigation
 
-The role installation was subsequently verified using PowerShell.
+The role was not reinstalled simply to recreate the missing screenshot.
 
-```powershell
-Get-WindowsFeature DHCP
-```
-
-The DHCP management console and server authorization were also checked.
+Instead, subsequent evidence from the completed DHCP configuration was used to document the working DHCP setup.
 
 ### Resolution
 
-The missing historical screenshot was not recreated by reinstalling DHCP.
+The existing installation was retained, and the DHCP configuration was verified through the following checks:
 
-Instead, subsequent verification evidence was used to document the installed role and working DHCP configuration.
+- DHCP server authorization.
+- DHCP scope creation and activation.
+- DHCP options.
+- DHCP interface bindings.
+- CLIENT1 receiving a DHCP lease.
 
 ### Verification
 
-- DHCP Server role was installed.
 - DHCP server authorization was confirmed.
-- DHCP scope was active.
-- DHCP options were verified.
+- The DHCP scope was active.
+- DHCP options were checked.
 - Interface bindings were checked.
 - CLIENT1 successfully received a DHCP lease.
 
@@ -265,7 +264,7 @@ Instead, subsequent verification evidence was used to document the installed rol
 
 A missed installation screenshot does not require reinstalling a working server role.
 
-Actual configuration and verification output can provide evidence of the completed installation.
+Subsequent configuration and verification evidence can document the completed implementation.
 
 ---
 

@@ -262,6 +262,7 @@ A Windows 10 Pro virtual machine was created in Oracle VirtualBox to act as a do
 | Operating System | Windows 10 Pro |
 | RAM | 4 GB |
 | Processors | 2 |
+| Virtual Disk | 50 GB |
 | Network Adapter | Internal Network |
 | Internal Network Name | intnet |
 | Adapter 2 | Disabled |

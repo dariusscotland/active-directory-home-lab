@@ -190,14 +190,17 @@ active-directory-home-lab/
 │
 ├── .github/
 │   ├── ISSUE_TEMPLATE/
+│   │   └── bug_report.yml
 │   └── PULL_REQUEST_TEMPLATE.md
 │
 ├── configs/
 │   ├── README.md
-│   └── network-plan.md
+│   ├── network-plan.md
+│   └── network-plan.example.md
 │
 ├── docs/
 │   ├── DECISIONS.md
+│   ├── LAB-WALKTHROUGH.md
 │   ├── SETUP.md
 │   ├── TESTING.md
 │   └── TROUBLESHOOTING.md
@@ -209,7 +212,7 @@ active-directory-home-lab/
 │
 ├── screenshots/
 │   ├── README.md
-│   └── [Lab implementation screenshots]
+│   └── [Implementation and testing screenshots]
 │
 ├── .editorconfig
 ├── .env.example
@@ -228,9 +231,11 @@ active-directory-home-lab/
 | [Testing Guide](docs/TESTING.md) | Contains verification procedures and observed results. |
 | [Troubleshooting](docs/TROUBLESHOOTING.md) | Records problems encountered and how they were resolved or investigated. |
 | [Design Decisions](docs/DECISIONS.md) | Explains the choices made during lab implementation. |
-| [Network Plan](configs/network-plan.md) | Documents the lab's IP addressing, adapters, DHCP, and routing. |
-| [Screenshots](screenshots/README.md) | Provides an index of implementation and testing evidence. |
-| [PowerShell Scripts](scripts/README.md) | Explains the optional scripts and the separate tutorial script used for bulk user creation. |
+| [Technical Walkthrough](docs/LAB-WALKTHROUGH.md) | Explains the architecture, technologies, implementation, and learning outcomes. |
+| [Network Plan](configs/network-plan.md) | Documents the implemented IP addressing, adapters, DHCP, and routing. |
+| [Example Network Plan](configs/network-plan.example.md) | Provides the original network configuration template. |
+| [Screenshots](screenshots/README.md) | Indexes the implementation and testing evidence. |
+| [PowerShell Scripts](scripts/README.md) | Explains the optional scripts and the tutorial script used for bulk user creation. |
 
 ## Skills Practiced
 

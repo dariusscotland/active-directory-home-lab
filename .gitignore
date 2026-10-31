@@ -8,6 +8,9 @@
 secrets/
 credentials/
 
+# Tutorial input file containing generated user names
+**/names.txt
+
 # VM disks, exports, and snapshots (do not commit these)
 *.vdi
 *.vhd
