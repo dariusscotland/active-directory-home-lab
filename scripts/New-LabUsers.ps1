@@ -39,6 +39,9 @@ catch {
     exit 1
 }
 
+$domain = Get-ADDomain -ErrorAction Stop
+$upnSuffix = $domain.DNSRoot
+
 $securePassword = Read-Host "Enter a lab-only initial password for the test accounts" -AsSecureString
 $created = 0
 $skipped = 0
@@ -46,7 +49,6 @@ $skipped = 0
 for ($i = 1; $i -le $Count; $i++) {
     $number = "{0:D4}" -f $i
     $sam = "$Prefix$number"
-    $upnSuffix = (Get-ADDomain).DNSRoot
     $upn = "$sam@$upnSuffix"
     $displayName = "Lab User $number"
 

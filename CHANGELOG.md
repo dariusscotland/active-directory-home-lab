@@ -2,7 +2,7 @@
 
 All notable changes to this Active Directory home lab project are documented here.
 
-## Unreleased
+## Completed Project
 
 ### Added
 

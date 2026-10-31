@@ -254,6 +254,8 @@ The script used a common lab password for the generated accounts. The password i
 
 A Windows 10 Pro virtual machine was created in Oracle VirtualBox to act as a domain client.
 
+> **Lifecycle note:** Windows 10 reached end of support on October 14, 2025. This virtual machine is retained for historical learning and domain-joining demonstrations. It should not be treated as a supported production workstation.
+
 ### Client Virtual Machine Configuration
 
 | Setting | Configuration |
