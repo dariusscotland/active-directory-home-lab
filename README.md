@@ -88,6 +88,11 @@ RRAS provides NAT routing between the internal network and the external connecti
 | IP configuration | DHCP |
 | Domain | mydomain.com |
 
+> **Lifecycle note:** Windows 10 Pro was used to reproduce the referenced
+> tutorial and demonstrate Active Directory domain joining. Windows 10
+> reached end of support on October 14, 2025. This VM is retained as
+> part of the historical learning lab and is not intended for production use.
+
 ### Internal Network
 
 | Setting | Configuration |
