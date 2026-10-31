@@ -71,3 +71,12 @@ mydomain.com Active Directory forest.
 | Domain Admins membership | Present | PASS |
 
 Result: Dedicated domain administrator successfully authenticated.
+
+## DHCP Server Verification
+
+The following PowerShell commands were used to verify the DHCP configuration.
+
+### 1. Verify DHCP Server Authorization
+
+```powershell
+Get-DhcpServerInDC

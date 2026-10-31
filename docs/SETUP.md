@@ -177,3 +177,70 @@ Internal Network settings:
 | Account Creation | Successful |
 | Group Membership | Verified |
 | Domain Login | Successful |
+
+## Routing and Remote Access Installation
+
+| Component | Status |
+|---|---|
+| Remote Access Role | Installed |
+| DirectAccess and VPN (RAS) | Installed |
+| Routing | Installed |
+| Web Application Proxy | Not installed |
+
+Configuration Status: Pending
+
+### RRAS and NAT Configuration
+
+| Component | Configuration |
+|---|---|
+| RRAS | Successfully configured |
+| NAT | Enabled |
+| Public Interface | INTERNET |
+| Public Interface IP | 10.0.2.15 |
+| Private Network | intnet |
+| Private Interface IP | 172.16.0.1 |
+
+RRAS Status: Running
+
+## Routing and Remote Access (RRAS)
+
+| Component | Configuration |
+|---|---|
+| RRAS Server | DC |
+| RRAS Status | Running |
+| NAT | Enabled |
+| Public Interface | INTERNET |
+| Public IP | 10.0.2.15 |
+| Internal Interface | INTERNAL |
+| Internal IP | 172.16.0.1 |
+| Private Network | intnet |
+
+RRAS configuration completed successfully.
+
+## DHCP Server Configuration
+
+The DHCP Server role was installed and configured on the domain controller.
+
+| Setting | Configuration |
+|---|---|
+| DHCP Server | DC.mydomain.com |
+| Authorization | Authorized in Active Directory |
+| Scope Name | 172.16.0.100-200 |
+| Network | 172.16.0.0/24 |
+| Start IP Address | 172.16.0.100 |
+| End IP Address | 172.16.0.200 |
+| Subnet Mask | 255.255.255.0 |
+| Exclusions | None |
+| Lease Duration | 8 days |
+| Default Gateway | 172.16.0.1 |
+| DNS Server | 172.16.0.1 |
+| DNS Domain Name | mydomain.com |
+| Scope Status | Active |
+
+### DHCP Configuration Notes
+
+- The DHCP scope provides IP addresses to devices on the internal network.
+- The internal network interface uses 172.16.0.1.
+- DHCP options provide clients with the correct default gateway and DNS server.
+- The DHCP server was authorized in Active Directory.
+- DHCP interface bindings were checked to verify the intended network interface configuration.
