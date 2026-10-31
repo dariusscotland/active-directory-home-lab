@@ -1,93 +1,285 @@
-# Active Directory Home Lab with VirtualBox and PowerShell
+# Active Directory Home Lab
 
-A hands-on Windows administration lab that simulates a small business network using Oracle VirtualBox, Windows Server, Active Directory Domain Services (AD DS), DNS, DHCP, NAT/routing, and a Windows client joined to the domain.
+A hands-on Windows Server and Active Directory home lab built with Oracle VirtualBox and PowerShell. The project simulates a small business network with a Windows Server 2019 domain controller, centralized directory services, DHCP, DNS, network routing, and a Windows 10 domain client.
 
-> **Status:** Build in progress. Replace planned steps with your actual results as you complete the lab. Do not claim a feature is working until you have tested it.
+The purpose of this project was to gain practical experience with Windows Server administration, Active Directory, network configuration, PowerShell, and domain authentication.
 
-## Objectives
+<details>
+<summary>Project status</summary>
 
-- Build an isolated virtual lab with a domain controller and a Windows client.
-- Install and configure AD DS and DNS.
-- Configure DHCP and routing/NAT for the lab's private network, if following the full tutorial design.
-- Create test users using PowerShell.
-- Join the client to the domain and verify domain sign-in.
-- Document configuration, test evidence, errors, and fixes.
+**Core lab implementation completed.**
 
-## Lab topology
+The domain controller, Active Directory environment, internal network, DHCP, NAT routing, Windows client, domain joining, and domain user authentication were configured and tested.
+
+</details>
+
+## Project Overview
+
+The lab consists of two virtual machines:
+
+- **DC:** Windows Server 2019 Standard Evaluation, configured as the domain controller.
+- **CLIENT1:** Windows 10 Pro, configured as a domain-joined workstation.
+
+The domain controller provides centralized authentication and network services to the internal lab network.
+
+### Lab Architecture
 
 ```mermaid
-flowchart LR
-    Internet((Internet)) --- NAT[VirtualBox NAT adapter]
-    NAT --- DC["Windows Server VM<br/>Domain Controller<br/>AD DS / DNS / DHCP / NAT"]
-    DC --- LAN["Private internal lab network"]
-    LAN --- CLIENT["Windows client VM<br/>Domain-joined workstation"]
+flowchart TD
+    INTERNET((Internet))
+    NAT[VirtualBox NAT]
+    DC["DC - Windows Server 2019<br/>Domain Controller<br/>AD DS / DNS / DHCP / RRAS"]
+    LAN["Internal VirtualBox Network<br/>intnet - 172.16.0.0/24"]
+    CLIENT["CLIENT1 - Windows 10 Pro<br/>Domain-joined workstation"]
+
+    INTERNET --- NAT
+    NAT --- DC
+    DC --- LAN
+    LAN --- CLIENT
 ```
 
-The domain controller has two virtual network adapters in the tutorial design: one for outbound connectivity and one for the private lab network. Keep the lab separate from any work or production network.
+The domain controller uses two network adapters:
 
-## Planned components
+- **INTERNET:** VirtualBox NAT adapter for external connectivity.
+- **INTERNAL:** VirtualBox Internal Network adapter for communication with the lab client.
 
-| Component | Planned role |
+RRAS provides NAT routing between the internal network and the external connection.
+
+## Technologies Used
+
+| Technology | Purpose |
 |---|---|
-| Oracle VirtualBox | Runs the virtual machines |
-| Windows Server 2019 or a currently supported evaluation version | Domain controller |
-| Windows Pro client evaluation/install media | Domain-joined client |
-| Active Directory Domain Services | Central directory and domain authentication |
-| DNS | Resolves the lab domain and host names |
-| DHCP | Assigns client IP settings on the private lab network |
-| PowerShell | Creates and verifies lab user accounts |
+| Oracle VirtualBox | Virtual machine hosting and network configuration |
+| Windows Server 2019 | Domain controller operating system |
+| Windows 10 Pro | Domain-joined client operating system |
+| Active Directory Domain Services | Centralized directory and domain authentication |
+| DNS | Domain name resolution |
+| DHCP | Automatic IP address assignment |
+| Routing and Remote Access (RRAS) | Routing and NAT |
+| PowerShell | Active Directory administration and bulk user creation |
+| PowerShell ISE | Running and managing PowerShell scripts |
 
-**Version note:** The referenced tutorial was published in 2021 and uses Windows Server 2019 and Windows 10. Those versions are now old. You may use them to reproduce the tutorial, but check Microsoft's current lifecycle and evaluation-download pages before choosing installation media. Use evaluation media and licensing in accordance with Microsoft's terms.
+## Lab Configuration
 
-## Prerequisites
+### Domain Controller
 
-- A computer capable of running two VMs. The required memory depends on the host OS and VM allocations; leave enough RAM for your host to remain responsive.
-- Virtualization enabled in BIOS/UEFI.
-- Oracle VirtualBox installed.
-- Official Windows installation/evaluation ISOs.
-- Enough free disk space for both virtual disks.
-- Administrator access on your own computer.
+| Setting | Configuration |
+|---|---|
+| Computer name | DC |
+| Operating system | Windows Server 2019 Standard Evaluation |
+| RAM | 2 GB |
+| Processors | 4 |
+| Virtual disk | 40 GB |
+| Domain | mydomain.com |
+| NetBIOS name | MYDOMAIN |
+| Internal IP | 172.16.0.1 |
+| External adapter | NAT |
 
-## Build checklist
+### Windows Client
 
-- [ ] Install VirtualBox and obtain official installation media.
-- [ ] Create the domain-controller VM.
-- [ ] Install Windows Server and configure the VM guest tools.
-- [ ] Configure and label the two network adapters.
-- [ ] Assign a static IP to the private-facing server adapter.
-- [ ] Install AD DS and promote the server to a domain controller.
-- [ ] Verify DNS and domain health.
-- [ ] Configure DHCP and NAT/routing if using the tutorial's full topology.
-- [ ] Create test users with PowerShell.
-- [ ] Create a Windows client VM on the private lab network.
-- [ ] Verify DHCP address, gateway, DNS, and connectivity.
-- [ ] Join the client to the domain.
-- [ ] Sign in with a lab domain account and verify the identity.
-- [ ] Capture screenshots and record actual results.
-- [ ] Review the repository for passwords, personal data, and secrets before publishing.
+| Setting | Configuration |
+|---|---|
+| Computer name | CLIENT1 |
+| Operating system | Windows 10 Pro |
+| RAM | 4 GB |
+| Processors | 2 |
+| Virtual disk | 50 GB |
+| Network | Internal Network (`intnet`) |
+| IP configuration | DHCP |
+| Domain | mydomain.com |
 
-## Repository map
+### Internal Network
 
-- `docs/SETUP.md` — implementation checklist and setup notes.
-- `docs/TESTING.md` — verification plan and evidence checklist.
-- `docs/TROUBLESHOOTING.md` — common issues to investigate.
-- `docs/DECISIONS.md` — design choices and their reasons.
-- `scripts/New-LabUsers.ps1` — creates clearly named test users in a selected OU.
-- `scripts/Test-LabDomain.ps1` — basic domain-controller checks.
-- `configs/` — safe example configuration notes only.
-- `screenshots/` — add your own screenshots after running the lab.
+| Setting | Configuration |
+|---|---|
+| Network address | 172.16.0.0/24 |
+| Subnet mask | 255.255.255.0 |
+| Domain controller | 172.16.0.1 |
+| DHCP range | 172.16.0.100-172.16.0.200 |
+| Default gateway | 172.16.0.1 |
+| DNS server | 172.16.0.1 |
+| DNS domain | mydomain.com |
+| DHCP lease duration | 8 days |
 
-## Security and privacy
+## Implementation
 
-- This is a **disposable learning lab**, not a production design.
-- Never reuse a real password. The user-creation script prompts for a password rather than embedding one.
-- Do not expose the domain controller's management ports to the public internet.
-- Do not bridge the lab onto a work or production network.
-- Do not commit secrets, real customer data, account details, or unredacted host/network information.
-- Use a private GitHub repository until you've reviewed screenshots and files for sensitive information.
+The lab was built in the following stages.
+
+### 1. Virtual Machine Preparation
+
+- Installed and configured Oracle VirtualBox.
+- Created the Windows Server virtual machine.
+- Installed Windows Server 2019 Standard Evaluation.
+- Configured the domain controller's virtual hardware and network adapters.
+- Assigned a static IP address to the internal network adapter.
+
+### 2. Active Directory Domain Services
+
+- Installed the Active Directory Domain Services role.
+- Promoted the server to a domain controller.
+- Created a new forest using `mydomain.com`.
+- Configured DNS during domain controller promotion.
+- Verified the domain and forest configuration.
+- Created the `_ADMINS` organizational unit.
+- Created a dedicated domain administrator account and verified administrative login.
+
+### 3. Routing and Remote Access
+
+- Installed the Remote Access role.
+- Selected the Routing and DirectAccess/VPN (RAS) services.
+- Configured RRAS NAT.
+- Configured the external `INTERNET` interface and internal `INTERNAL` interface.
+- Verified that RRAS was running.
+
+### 4. DHCP Configuration
+
+- Installed the DHCP Server role.
+- Authorized the DHCP server in Active Directory.
+- Created and activated the internal network DHCP scope.
+- Configured the address range, lease duration, gateway, DNS server, and domain name.
+- Checked DHCP options and interface binding.
+
+### 5. PowerShell Bulk User Creation
+
+Used the tutorial's `1_CREATE_USERS.ps1` script with `names.txt` to create synthetic Active Directory user accounts.
+
+**Observed result:**
+
+- Source file contained 1,002 lines.
+- 1,000 user accounts were created.
+- Duplicate generated usernames, including `smolder` and `trollins`, were investigated.
+
+The bulk user-creation tutorial files are separate from the optional supplementary scripts included in this repository.
+
+### 6. Windows Client Deployment
+
+- Created the Windows 10 Pro virtual machine named `CLIENT1`.
+- Connected it to the internal VirtualBox network.
+- Configured the client to receive network settings through DHCP.
+- Verified internet connectivity and domain name resolution.
+- Joined CLIENT1 to `mydomain.com`.
+- Signed in using a domain account, including a generated lab user account.
+
+## Validation and Results
+
+The following implementation and validation activities were completed:
+
+| Test | Result |
+|---|---|
+| Active Directory domain creation | Passed |
+| Forest and domain configuration verification | Passed |
+| Dedicated domain administrator login | Passed |
+| DHCP server authorization | Passed |
+| DHCP scope creation and activation | Passed |
+| DHCP options verification | Passed |
+| DHCP interface binding verification | Passed |
+| CLIENT1 DHCP address assignment | Passed |
+| CLIENT1 internet connectivity | Passed |
+| CLIENT1 domain name resolution | Passed |
+| CLIENT1 domain joining | Passed |
+| CLIENT1 domain administrator login | Passed |
+| CLIENT1 generated user authentication | Passed |
+| CLIENT1 computer object visibility in Active Directory | Verified |
+
+Testing details and verification procedures are documented in [`docs/TESTING.md`](docs/TESTING.md).
+
+## Repository Structure
+
+```text
+active-directory-home-lab/
+│
+├── .github/
+│   ├── ISSUE_TEMPLATE/
+│   └── PULL_REQUEST_TEMPLATE.md
+│
+├── configs/
+│   ├── README.md
+│   └── network-plan.md
+│
+├── docs/
+│   ├── DECISIONS.md
+│   ├── SETUP.md
+│   ├── TESTING.md
+│   └── TROUBLESHOOTING.md
+│
+├── scripts/
+│   ├── New-LabUsers.ps1
+│   ├── Test-LabDomain.ps1
+│   └── README.md
+│
+├── screenshots/
+│   ├── README.md
+│   └── [Lab implementation screenshots]
+│
+├── .editorconfig
+├── .env.example
+├── .gitignore
+├── CHANGELOG.md
+├── CONTRIBUTING.md
+├── README.md
+└── SECURITY.md
+```
+
+### Documentation
+
+| Document | Description |
+|---|---|
+| [Setup Guide](docs/SETUP.md) | Documents the lab installation and configuration process. |
+| [Testing Guide](docs/TESTING.md) | Contains verification procedures and observed results. |
+| [Troubleshooting](docs/TROUBLESHOOTING.md) | Records problems encountered and how they were resolved or investigated. |
+| [Design Decisions](docs/DECISIONS.md) | Explains the choices made during lab implementation. |
+| [Network Plan](configs/network-plan.md) | Documents the lab's IP addressing, adapters, DHCP, and routing. |
+| [Screenshots](screenshots/README.md) | Provides an index of implementation and testing evidence. |
+| [PowerShell Scripts](scripts/README.md) | Explains the optional scripts and the separate tutorial script used for bulk user creation. |
+
+## Skills Practiced
+
+This project provided practical experience with:
+
+- Windows Server installation and configuration.
+- Active Directory Domain Services.
+- Domain controller promotion and verification.
+- Organizational units and user account management.
+- Domain administrator account management.
+- DNS and DHCP configuration.
+- IP addressing and subnetting.
+- Virtual networking using NAT and internal networks.
+- Routing and Network Address Translation.
+- PowerShell scripting and administration.
+- Windows domain joining and authentication.
+- Troubleshooting network and domain connectivity.
+- Technical documentation and evidence collection.
+
+## Security Considerations
+
+This is an isolated learning environment, not a production network design.
+
+- Use synthetic accounts and data only.
+- Do not reuse personal, work, or production passwords.
+- The tutorial's bulk user-creation process uses a common lab password. It must never be reused for real accounts.
+- Do not expose domain controller management services to the public internet.
+- Do not connect the lab directly to an employer's or another production network.
+- Review scripts before executing them.
+- Treat administrative accounts as privileged accounts, even in a lab.
+
+## Future Improvements
+
+Potential future learning extensions include:
+
+- Group Policy creation and management.
+- Organizational unit delegation and permissions.
+- File sharing and NTFS permissions.
+- DNS troubleshooting and advanced DNS configuration.
+- PowerShell automation for routine administration.
+- Windows security auditing and event log analysis.
+- Centralized logging and monitoring.
+
+These are potential extensions and are not represented as completed features of the current implementation.
 
 ## Reference
 
-Original tutorial: [Josh Madakor — How to Setup a Basic Home Lab Running Active Directory (Oracle VirtualBox) | Add Users w/PowerShell](https://www.youtube.com/watch?v=MHsI8hJmggI)
+This project was inspired by:
 
-This repository is an original learning companion and implementation record, not a copy of the video's transcript or code. Update it with your own configuration, tests, screenshots, and lessons learned.
+[Josh Madakor - How to Setup a Basic Home Lab Running Active Directory (Oracle VirtualBox) | Add Users w/PowerShell](https://www.youtube.com/watch?v=MHsI8hJmggI)
+
+This repository documents my own lab implementation, configuration decisions, testing, troubleshooting, and screenshots. It is not a reproduction of the tutorial transcript.
