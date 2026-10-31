@@ -244,3 +244,14 @@ The DHCP Server role was installed and configured on the domain controller.
 - DHCP options provide clients with the correct default gateway and DNS server.
 - The DHCP server was authorized in Active Directory.
 - DHCP interface bindings were checked to verify the intended network interface configuration.
+
+## Internet Explorer Enhanced Security Configuration
+
+Internet Explorer Enhanced Security Configuration (IE ESC) was disabled on the Windows Server 2019 domain controller to simplify browser access during the lab setup.
+
+| Setting | Configuration |
+|---|---|
+| Administrators | Off |
+| Users | Off |
+
+**Note:** This setting was changed for lab convenience only. Disabling IE ESC reduces browser security protections.
