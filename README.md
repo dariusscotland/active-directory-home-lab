@@ -82,7 +82,7 @@ RRAS provides NAT routing between the internal network and the external connecti
 | Computer name | CLIENT1 |
 | Operating system | Windows 10 Pro |
 | RAM | 4 GB |
-| Processors | 2 |
+| Processors | 4 |
 | Virtual disk | 50 GB |
 | Network | Internal Network (`intnet`) |
 | IP configuration | DHCP |

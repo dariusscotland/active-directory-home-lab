@@ -282,7 +282,7 @@ A Windows 10 Pro virtual machine named CLIENT1 was created.
 The client was configured with:
 
 - 4 GB RAM.
-- 2 processors.
+- 4 processors.
 - Internal Network attachment.
 - Internal Network name `intnet`.
 - Bidirectional Shared Clipboard.
