@@ -80,3 +80,11 @@ The following PowerShell commands were used to verify the DHCP configuration.
 
 ```powershell
 Get-DhcpServerInDC
+
+## Bulk Active Directory User Verification
+
+### 1. Verify Account Count
+
+```powershell
+Get-ADUser -SearchBase "OU=_USERS,DC=mydomain,DC=com" -Filter * |
+Measure-Object

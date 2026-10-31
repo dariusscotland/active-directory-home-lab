@@ -255,3 +255,26 @@ Internet Explorer Enhanced Security Configuration (IE ESC) was disabled on the W
 | Users | Off |
 
 **Note:** This setting was changed for lab convenience only. Disabling IE ESC reduces browser security protections.
+
+## Bulk Active Directory User Creation
+
+A PowerShell script from Josh Madakor's AD_PS repository was used
+to generate employee accounts in Active Directory.
+
+| Setting | Configuration |
+|---|---|
+| Script | 1_CREATE_USERS.ps1 |
+| Names File | names.txt |
+| Input Entries | 1,002 |
+| Unique Usernames | 1,000 |
+| Accounts Created | 1,000 |
+| Organizational Unit | _USERS |
+| Account Status | Enabled |
+
+### User Creation Notes
+
+- The names.txt file was updated with an additional name before execution.
+- The PowerShell script generated usernames using the names in the file.
+- Two generated usernames appeared twice: smolder and trollins.
+- Duplicate usernames could not create separate Active Directory accounts.
+- A total of 1,000 accounts were verified in the _USERS OU.
